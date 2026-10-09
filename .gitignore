@@ -1,4 +1,4 @@
-# Unity generated folders
+# Unity generated
 [Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
@@ -12,6 +12,7 @@ MemoryCaptures/
 
 # IDE
 .vscode/
+.vs/
 .idea/
 
 # macOS
@@ -30,35 +31,15 @@ MemoryCaptures/
 *.mdb
 *.opendb
 *.VC.db
-<<<<<<< HEAD
-# Unity Version Control - local workspace
-.plastic/
-=======
-# Git - no incluir su base de datos interna en Unity VCS
-.git
-.git/**
-# Unity Version Control - archivos locales
-.plastic/
-cloaked.conf
 
->>>>>>> 379aa6d (chore: ignore Unity Version Control local files)# Unity Version Control / Plastic SCM
+# Unity Version Control / Plastic SCM
 .plastic/
+.plastic_PA3_backup/
 cloaked.conf
 ignore.conf
 
-# Git
-.git
-.git/**
+# Backups
+Backups/
 
-# Archivos de revisión
-*.zip# Unity Version Control / Plastic SCM
-.plastic/
-cloaked.conf
-ignore.conf
-
-# Git
-.git
-.git/**
-
-# Archivos de revisión
+# Revision files
 *.zip

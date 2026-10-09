@@ -46,6 +46,9 @@ public class ReactorRestorationManager : MonoBehaviour
     [SerializeField]
     private AudioSource reactorSuspenseSource;
 
+    [SerializeField]
+    private AudioSource electricalSparksSource;
+
     [Header("Audio de restauración")]
     [SerializeField]
     private AudioSource restoredAmbienceSource;
@@ -57,12 +60,11 @@ public class ReactorRestorationManager : MonoBehaviour
     private bool restorationInProgress = false;
 
     public bool IsRestored => isRestored;
-
     public bool RestorationInProgress => restorationInProgress;
 
     public void StartRestoration()
     {
-        // Evitar que la restauración se ejecute varias veces.
+        // Evitar que la restauración se ejecute más de una vez.
         if (isRestored || restorationInProgress)
         {
             return;
@@ -100,7 +102,7 @@ public class ReactorRestorationManager : MonoBehaviour
         }
 
         // PASO 3:
-        // Reproducir sonido de restauración.
+        // Reproducir sonido de reparación/restauración.
         if (repairSfxSource != null)
         {
             repairSfxSource.Play();
@@ -122,7 +124,7 @@ public class ReactorRestorationManager : MonoBehaviour
         }
 
         // PASO 5:
-        // Detener la música de suspenso del reactor.
+        // Detener la música de suspenso.
         if (reactorSuspenseSource != null)
         {
             reactorSuspenseSource.Stop();
@@ -195,8 +197,7 @@ public class ReactorRestorationManager : MonoBehaviour
         }
 
         // PASO 8:
-        // Encender luces normales de la estación,
-        // si existen luces asignadas.
+        // Encender luces normales/estables de la estación.
         if (stableLightsToEnable != null)
         {
             foreach (Light stableLight in stableLightsToEnable)
@@ -235,6 +236,17 @@ public class ReactorRestorationManager : MonoBehaviour
         }
 
         // PASO 11:
+        // Detener el sonido de corto circuito.
+        if (electricalSparksSource != null)
+        {
+            electricalSparksSource.Stop();
+
+            Debug.Log(
+                "ECHO-07: Sonido de corto circuito detenido."
+            );
+        }
+
+        // PASO 12:
         // Reproducir la ambientación tranquila/restaurada.
         if (restoredAmbienceSource != null)
         {
@@ -248,13 +260,13 @@ public class ReactorRestorationManager : MonoBehaviour
             }
         }
 
-        // PASO 12:
+        // PASO 13:
         // Marcar el reactor como restaurado.
         isRestored = true;
         restorationInProgress = false;
 
-        // PASO 13:
-        // Finalizar la misión y ocultar la guía holográfica.
+        // PASO 14:
+        // Finalizar la misión y ocultar la guía.
         if (objectiveGuideManager != null)
         {
             objectiveGuideManager.CompleteMission(
